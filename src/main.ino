@@ -55,11 +55,11 @@
 
 // Firebase url
 #define DATABASE_URL "server-d0dcc-default-rtdb.firebaseio.com" 
-#define API_KEY "AIzaSyCYG8xkf0IHb74zdDSXqXgrm7CQvXO1s4I"
+#define API_KEY
 
 // Firebase authenticated user
-#define USER_EMAIL "rohanhh2@illinois.edu"
-#define USER_PASSWORD "ece445"
+#define USER_EMAIL
+#define USER_PASSWORD 
 
 // instantiate firebase object
 FirebaseData fbdo;
