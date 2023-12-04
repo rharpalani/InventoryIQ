@@ -57,7 +57,7 @@ This [library](https://github.com/mobizt/Firebase-ESP32) was very useful in sett
 
 ## 2023-11-15
 
-Today I finished the software functionality to authorize users with RFIDs, display an unlock message to the LCD, unlock the box, and store these records in the databse. Though Krish was still working on getting the camera to decode QR codes, I wrote a Python script to mimic this process of sending components from the camera to the main system to see the entire user interface and database functionality at once. This was the major software component of the project, so there were a couple interesting design decisions involved here. 
+Today I finished the software functionality to authorize users with RFIDs, display an unlock message to the LCD, unlock the box, and store these records in the databse. Though Krish was still working on getting the camera to decode QR codes, I wrote a Python script to mimic this process of sending components from the camera to the main system to see the entire user interface and database functionality at once. This was the major software component of the project, so there were a couple interesting design decisions involved here. The finalized software for this can also be seen [here](/src/main.ino).
 
 #### Polling-Based RFID Reading
 
@@ -185,3 +185,21 @@ void pushComponent(String component) {
   }
 } 
 ```
+
+## 2023-11-27
+
+Today my objective was to 3D print an enclosure for our PCB and the other various modules of our design. I followed some of the [tutorials](https://www.tinkercad.com/learn) on the Tinkercad website, a 3D printing software used by beginners, to create an enclosure for our PCB, the LCD, RFID reader, and camera. The source files can be [here](/3D_printing/). 
+
+I then went to the Jackson Innovation Lab in the Mechanical Engineering building to learn how to 3D print my design. The volunteers there helped me understand how to use slicing software to optimize the build time of the design and generate supports for the print. 
+
+The design in the slicing software can be seen here:
+
+![nov271](img/nov271.jpeg)
+
+Here's the design as it's being printed:
+
+![nov272](img/nov272.jpeg)
+
+The finalized design of the main enclosure, with the LCD on top and the PCB hidden underneath:
+
+![nov273](img/nov273.jpeg)
