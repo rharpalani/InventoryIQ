@@ -208,7 +208,7 @@ Now that we had selected a linear regulator, while Krish redesigned the PCB, I r
 
 Since *V_dropout = V_in - V_out*, our system's dropout voltage was 1.7V. 
 
-<img src="img/nov221.png" width="400">
+<img src="img/nov221.png" width="500">
 
 Using the above graph, 1.7V is far above the clearance necesary for the linear regulator to work as intended with the output current that we need. I then looked at the example tolerance analysis given in the [wiki](https://courses.engr.illinois.edu/ece445/wiki/#/regulators/index) to do this. Using this calculation:
 
