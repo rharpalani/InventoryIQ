@@ -61,6 +61,10 @@ This [library](https://github.com/mobizt/Firebase-ESP32) was very useful in sett
 
 Today I finished the software functionality to authorize users with RFIDs, display an unlock message to the LCD, unlock the box, and store these records in the databse. Though Krish was still working on getting the camera to decode QR codes, I wrote a Python script to mimic this process of sending components from the camera to the main system to see the entire user interface and database functionality at once. This was the major software component of the project, so there were a couple interesting design decisions involved here. The finalized software for this can also be seen [here](/src/main.ino).
 
+Shown here is the finalized project built with the development board:
+
+![nov151](img/nov151.jpg)
+
 #### Polling-Based RFID Reading
 
 The first step in the user interaction sequence is authorization through the RFID tag. At this point, since the system waits on an RFID tag to initiate, I had to decide between using polling- or interrupt- based IO. After having taken ECE391, I weighed the pros and cons of this decision, but ultimately decided on polling-based IO for a few reasons:
