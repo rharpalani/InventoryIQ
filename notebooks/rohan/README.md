@@ -216,7 +216,7 @@ Using the above graph, 1.7V is far above the clearance necesary for the linear r
 
 The maximum temperature the regulator would reach was 133 degrees Celsius in the worst case, which is lower than maximum temperature tolerance of 150 degrees Celsius.  
 
-Once Krish finished designing the PCB and I finished wiring it, I placed an order on Digikey to get the new parts needed (mainly the new regulator and other ancillary resistors/capacitors) and an order on JLC PCB to get a rush shipment of the new PCB design. Both said that they would arrive by either the Monday or Tuesday after break. 
+Once Krish finished designing the [PCB](/pcb_v3/) and I finished wiring it, I placed an order on Digikey to get the new parts needed (mainly the new regulator and other ancillary resistors/capacitors) and an order on JLC PCB to get a rush shipment of the new PCB design. Both said that they would arrive by either the Monday or Tuesday after break. 
 
 ## 2023-11-27
 
@@ -253,4 +253,4 @@ As can be seen here, the PCB in the foreground contains our control subsystem wi
 
 <img src="img/nov28.jpeg" width="700">
 
-A final demonstration video of our project can be seen [here](https://youtu.be/PPzAGEirUPg?si=TuyA4h9PU0MN2_ne). All of our high level requirements were satisfied and our system was functional, making this senior design project a success!
+A final demonstration video of our project can be seen [here](https://youtu.be/PPzAGEirUPg?si=TuyA4h9PU0MN2_ne). All of our high level requirements were satisfied and our system was functional on our PCB, making this senior design project a success!
