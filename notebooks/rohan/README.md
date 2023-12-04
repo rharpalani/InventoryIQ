@@ -8,11 +8,17 @@ I created a parts ordering spreadsheet to keep track of all of these findings an
 
 <img src="img/oct3.png" width="700">
 
-While Krish was primarily responsible for the power subsystem, I also helped to identify the correct buck converters required for our circuit. After running our tolerance analysis, we realized that the linear regulator would output more heat than tolerable for the circuit in the voltage drop from 12V to 5V. As such, I was responsible for choosing a new method by which to create this voltage drop. Originally, we had the idea of cascading buck converters, since we need 12V, 5V, and 3.3V in our circuit. However, we realized that cascading these buck converters would be a bad idea due to the reduced voltage regulation, where the regulation and control of voltage becomes more challenging in cascading configurations. This occurs as each converter has its own voltage control loop, resulting in less precise voltage regulation.
+While Krish was primarily responsible for the power subsystem, I also helped to identify the correct buck converters required for our circuit. Originally, we had the idea of cascading buck converters, since we need 12V, 5V, and 3.3V in our circuit. However, I realized that cascading these buck converters would be a bad idea due to the reduced voltage regulation, where the regulation and control of voltage becomes more challenging in cascading configurations. This occurs as each converter has its own voltage control loop, resulting in less precise voltage regulation.
 
 Following this realization, we decided to design two separate buck converter circuits in our circuit, one to provide the drop from 12V to 5V and one to provide the drop from 12V to 3.3V. After doing some research and looking at multiple datasheets on Digikey, With the following circuit, I was able to calculate the required resistances & capacitances to create each of these voltage drops.
 
 <img src="img/oct3a.png" width="700">
+
+## 2023-10-10
+
+Today, our objective was to get the PCB in for the 2nd round deadline. Though we weren't quite ready to have a finalized PCB done by last week's deadline, we wanted to get one in time for the deadline today to give us as much room for error as possible. Over the course of the day, I helped Krish to find components, footprints, and check over the circuit design while he put it all together. After, I took the lead on wiring the circuit, so that we could get it done on time.
+
+<img src="img/oct10.png" width="700">
 
 ## 2023-11-07
 
