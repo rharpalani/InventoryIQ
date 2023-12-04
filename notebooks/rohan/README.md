@@ -253,4 +253,4 @@ As can be seen here, the PCB in the foreground contains our control subsystem wi
 
 <img src="img/nov28.jpeg" width="700">
 
-A final demonstration video of our project can be seen [here](https://youtu.be/PPzAGEirUPg?si=TuyA4h9PU0MN2_ne). All of our high level requirements were satisfied and our system was functional, making this senior design project a success. 
+A final demonstration video of our project can be seen [here](https://youtu.be/PPzAGEirUPg?si=TuyA4h9PU0MN2_ne). All of our high level requirements were satisfied and our system was functional, making this senior design project a success!
