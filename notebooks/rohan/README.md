@@ -62,6 +62,7 @@ Today I finished the software functionality to authorize users with RFIDs, displ
 #### Polling-Based RFID Reading
 
 The first step in the user interaction sequence is authorization through the RFID tag. At this point, since the system waits on an RFID tag to initiate, I had to decide between using polling- or interrupt- based IO. After having taken ECE391, I weighed the pros and cons of this decision, but ultimately decided on polling-based IO for a few reasons:
+
 * Simplicity: Since the system wasn't doing any computation before the user interface sequence was initiated, there would be no process to be interrupted by the RFID tag, making an interrupt-based IO superfluous and overly complicated.
 * Predictability: Since polling occurs at predefined intervals, it provides a predictable and consistent approach to checking the RFID reader's status, which is very beneficial given our real-time system. 
 
@@ -69,6 +70,92 @@ With a polling-based system, the loop repeatedly checks whether an RFID is prese
 
 ```c
 echoLCD("Tap iCard!", "");
-  while (! mfrc522.PICC_IsNewCardPresent());
+while (! mfrc522.PICC_IsNewCardPresent());
 ```
+
+#### Database Design
+
+I designed the database to maintain 3 types of collections:
+
+* Checkouts: Lists all parts checked out, separated by user
+* Inventory: Lists all parts in system, divided by whether they are in the container or outside of it
+* Users: Lists all users, including whether they are authorized or not
+
+The completed database looks like this:
+
+![nov15](img/nov15.png)
+
+When storing these components in Firebase, I used a Firebase paradigm suggested in their documentation to invert the data as keys and set the values to either True, None, or some other (don't care) value. This makes checking whether a key is present a very easy process - I just have to try to access the value at /users/$uid/component (for example) to see if a user has checked out a certain component. If that access operation returns None, then I know the component is not present in that list. 
+
+Though it seems like some duplicate information is stored (ie having both a checkouts and inventory list), for this data inversion paradigm to work, the keys need to be stored in multiple places within the database to encode multiple pieces of information. For example, to say that a screwdriver has both been checked out and is checked out to a certain user, it is easier to store this component both in the checkouts and inventory lists. 
+
+An example of this paradigm can be seen here:
+
+```py
+def check_component(component):
+    try:
+        if db.reference(f'inventory/out/{component}').get():
+            print("component present")
+        else:
+            print("component not present")
+    except Exception as e:
+        print("Database push failed")
+        print(str(e))
+```
+
+I also created a [Python script](/src/firebase.py) to allow manipulation of the database by ECE 445 course staff. This includes things such as setting the inventory, authorizing users, or checking out components without requiring an RFID tap and QR code scan, in case the TAs need to manually make any adjustments. For example, course staff could use this script to set which users are authorized to access the component container:
+
+```py
+def set_users():
+    try:
+
+        data = {
+            "authorized"  : {
+                "Rohan" : True,
+                "Rushil" : True,
+            },
+            "unauthorized" : {
+                "Krish" : True,
+            }
+        }
+
+        db.reference("users").set(data)
+        print("success")
+    except Exception as e:
+        print("Database push failed")
+        print(str(e))
+```
+
+#### Software Design to Create a Frictionless UX
+
+When designing the software, I also took the time to think about the user experience and student journey as they go to check out components. Rather than forcing students to manually input whether they are checking out or returning components (specify the type of transaction), my database & software design automatically checks whether the component is in the inventory or has already been checked out, indicating whether the transaction is a borrow or a return, another advantage of having both *checkouts* and *inventory* lists. This allows students to seamlessly tap their iCard and scan the component's QR code, and the system will automatically update the database as a checkout or as a return. 
+
+An excerpt of this process is shown here:
+
+```c
+if (Firebase.get(fbdo, "inventory/in/" + component)) {
+    // component in box, so student borrowing
+    Serial.println("Initiate borrow");
+
+    // checkout entry {component : true}
+    FirebaseJson checkoutData;
+    checkoutData.set(component, currentTime);
+
+    // inventory entry {component : true}
+    FirebaseJson jsonData;
+    jsonData.set(component, true);
+
+    // update student checkout record
+    Firebase.updateNode(fbdo, "checkouts/" + user, checkoutData);
+
+    // remove part from in record
+    Firebase.deleteNode(fbdo, "inventory/in/" + component);
+
+    // add part to out record
+    Firebase.updateNode(fbdo, "inventory/out", jsonData);
+
+    echoLCD(component, "Checked out!");
+}
+```
+
 
