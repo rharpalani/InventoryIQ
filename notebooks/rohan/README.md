@@ -228,7 +228,7 @@ Here's the design as it's being printed:
 
 The finalized design of the main enclosure, with the LCD on top and the PCB hidden underneath:
 
-<img src="img/nov273.jpeg" width="800">
+<img src="img/nov273.jpeg">
 
 ## 2023-11-28
 
