@@ -220,15 +220,16 @@ I then went to the Jackson Innovation Lab in the Mechanical Engineering building
 
 The design in the slicing software can be seen here:
 
-![nov271](img/nov271.jpeg)
+<img src="img/nov273.jpeg">
 
 Here's the design as it's being printed:
 
-![nov272](img/nov272.jpeg)
+<img src="img/nov272.jpeg" width="700">
 
 The finalized design of the main enclosure, with the LCD on top and the PCB hidden underneath:
 
-<img src="img/nov273.jpeg">
+<img src="img/nov273.jpeg" width="700">
+
 
 ## 2023-11-28
 
