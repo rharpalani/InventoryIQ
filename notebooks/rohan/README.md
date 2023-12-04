@@ -12,7 +12,7 @@ Our project initially proposed using iCards as the RFID tags to allow authentica
 
 By the end of the day, on the Arduino, I was able to get software running to extract the UID from an RFID tag and display that UID on the LCD, a significant component of our user interface subsystem. 
 
-![nov7](img/nov7.jpg)
+<img src="img/nov7.jpg" width="700">
 
 ## 2023-11-08
 
