@@ -236,4 +236,4 @@ Today, all of our parts as well as the updated PCB came in. I first soldered on 
 
 The oscilloscope values values read are shown here:
 
-![nov28](img/nov28.png)
+<img src="img/nov28.png" width="300">
