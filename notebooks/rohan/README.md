@@ -1,4 +1,4 @@
-# Rohan Worklog & Journal
+# Rohan's Worklog & Journal
 
 ## 2023-11-07
 
@@ -85,7 +85,7 @@ The completed database looks like this:
 
 ![nov15](img/nov15.png)
 
-When storing these components in Firebase, I used a Firebase paradigm suggested in their documentation to invert the data as keys and set the values to either True, None, or some other (don't care) value. This makes checking whether a key is present a very easy process - I just have to try to access the value at /users/$uid/component (for example) to see if a user has checked out a certain component. If that access operation returns None, then I know the component is not present in that list. 
+When storing these components in Firebase, I used a Firebase paradigm suggested in their [documentation](https://firebase.google.com/docs/database/cpp/structure-data) to invert the data as keys and set the values to either True, None, or some other (don't care) value. This makes checking whether a key is present a very easy process - I just have to try to access the value at /users/$uid/component (for example) to see if a user has checked out a certain component. If that access operation returns None, then I know the component is not present in that list. 
 
 Though it seems like some duplicate information is stored (ie having both a checkouts and inventory list), for this data inversion paradigm to work, the keys need to be stored in multiple places within the database to encode multiple pieces of information. For example, to say that a screwdriver has both been checked out and is checked out to a certain user, it is easier to store this component both in the checkouts and inventory lists. 
 
@@ -158,4 +158,30 @@ if (Firebase.get(fbdo, "inventory/in/" + component)) {
 }
 ```
 
+In this software design, I also included protections for various edge cases, including a student trying to checkout or return a component that has already been checked out to another user. Since this sytem absolves the need for a TA to be present at every step of the checkout process, I wanted to ensure that the appropriate checks were still put into place. 
 
+#### Dual-ESP Communication
+
+Though Krish was still working through getting the camera to decode, we had talked through a couple different ways of communicating between the two ESPs. I was working on the software for the main ESP, while he was working on that for the camera ESP. Essentially, we needed a way of getting the camera ESP to send the decoded component's URL to the main ESP.
+
+First, we explored using [ESPNOW](https://dronebotworkshop.com/esp-now/) to provide peer-to-peer communication between these two ESPs. However, after multiple iterations of testing, we found this process to be highly unreliable, with the main ESP receiving sent data roughly only one out of every 10 times. Krish also tried to create a customized SPI connection over hardware between the two, but this also proved to be far more challenging than he initially expected, so that idea also didn't work. 
+
+Finally, I suggested using the existing Firebase database to write a component name from the camera and read it from the main ESP. This proved to be highly efficient, and made use of our existing database design, so I ended up including this in the finalized software. An example of this process can be seen in the software I wrote below:
+
+```c
+void pushComponent(String component) {
+  if (Firebase.isTokenExpired()){
+    Firebase.refreshToken(&config);
+    Serial.println("Refresh token");
+  }
+
+  FirebaseJson jsonData;
+  jsonData.set("component", component);
+
+  if (Firebase.ready()) {
+    Firebase.updateNode(fbdo, "current", jsonData);
+    Serial.println("updated firebase");
+    return;
+  }
+} 
+```
