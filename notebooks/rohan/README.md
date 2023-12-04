@@ -53,13 +53,22 @@ As an initial proof of concept, to just make sure that I understood how to push 
 
 ![nov14](img/nov14.png)
 
-This [library](https://github.com/mobizt/Firebase-ESP32) was very useful in setting up Database authorizations. 
+This [library](https://github.com/mobizt/Firebase-ESP32) was very useful in setting up Firebase authorizations. 
 
 ## 2023-11-15
 
-Today I finished the software functionality to authorize users with RFIDs, display an unlock message to the LCD, and unlock the box. This was the major software component of the project, so there were a couple interesting design decisions involved here. 
+Today I finished the software functionality to authorize users with RFIDs, display an unlock message to the LCD, unlock the box, and store these records in the databse. Though Krish was still working on getting the camera to decode QR codes, I wrote a Python script to mimic this process of sending components from the camera to the main system to see the entire user interface and database functionality at once. This was the major software component of the project, so there were a couple interesting design decisions involved here. 
 
-#### Software Design Decisions
+#### Polling-Based RFID Reading
 
-* Interrupt-based RFID reading: 
+The first step in the user interaction sequence is authorization through the RFID tag. At this point, since the system waits on an RFID tag to initiate, I had to decide between using polling- or interrupt- based IO. After having taken ECE391, I weighed the pros and cons of this decision, but ultimately decided on polling-based IO for a few reasons:
+* Simplicity: Since the system wasn't doing any computation before the user interface sequence was initiated, there would be no process to be interrupted by the RFID tag, making an interrupt-based IO superfluous and overly complicated.
+* Predictability: Since polling occurs at predefined intervals, it provides a predictable and consistent approach to checking the RFID reader's status, which is very beneficial given our real-time system. 
+
+With a polling-based system, the loop repeatedly checks whether an RFID is present before initiating the rest of the sequence.
+
+```c
+echoLCD("Tap iCard!", "");
+  while (! mfrc522.PICC_IsNewCardPresent());
+```
 
