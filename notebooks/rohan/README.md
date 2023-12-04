@@ -1,3 +1,5 @@
+# Rohan Worklog & Journal
+
 ## 2023-11-07
 
 Today I spent the entire day on development since we've finally received many of the parts required for our user interface subsystem. My goal was to understand how to use the RFID reader module and LCD. To effectively learn how each of these parts worked before integrating them into the system, I first tested each module on my Arduino Uno using the manufacturer-provided test files and libraries. Once each of these was working individually, my objective for the day was to be able to read an RFID's unique ID (UID) using the Arduino and then echo it to the LCD. 
@@ -35,3 +37,29 @@ However, I still wasn't able to unlock the box with the relay. After even furthe
 ![nov13](img/nov13.jpg)
 
 However, this was not the desired functionality, as the solenoid was supposed to be powered by a 3.3V enable input from the ESP32, since the ESP cannot send a 12V logic signal. Realizing this, I ordered a 3.3V relay for our system. 
+
+## 2023-11-14
+
+Today my objective was to set up the database subsystem for our project. I knew I wanted to use a serverless database because I wanted something easy to start without any infrastructure management required. However, there were a couple different options I explored, including MongoDB Atlas, AWS, and Google Firebase.
+
+I ultimately landed on Google Firebase for a few reasons:
+* Generous free tier
+* Well-documented service for hosting serverless databases
+* Offers schemaless, no-SQL database
+
+Having a no-SQL database was also an important design consideration. Rather than a SQL database organized into rows and tables, Firebase's data is stored in documents, and ordered into collections. This allowed me a lot more freedom in designing the database and the main software for our project, since documents can store multiple different data types. Having this in a no-SQL format and viewed by a GUI on the Firebase web console also allows anyone to access the database, without requiring any technical knowledge or necessitating a SQL query. This is esential for our project, since it should be able to be used by any course staff in ECE 445 with a low barrier to entry. 
+
+As an initial proof of concept, to just make sure that I understood how to push data into the database, I set up a sample program on the dev board to write the UID of an RFID tag to the database along with the time that it was read. The output of this code in the Firebase console can be seen here. 
+
+![nov14](img/nov14.png)
+
+This [library](https://github.com/mobizt/Firebase-ESP32) was very useful in setting up Database authorizations. 
+
+## 2023-11-15
+
+Today I finished the software functionality to authorize users with RFIDs, display an unlock message to the LCD, and unlock the box. This was the major software component of the project, so there were a couple interesting design decisions involved here. 
+
+#### Software Design Decisions
+
+* Interrupt-based RFID reading: 
+
