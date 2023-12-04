@@ -206,9 +206,9 @@ Today, Krish and I spent the entire day re-designing our PCB on KiCAD. Krish had
 
 Now that we had selected a linear regulator, while Krish redesigned the PCB, I ran a tolerance analysis on our selected component. First, I used the regulator's [datasheet](https://www.diodes.com/assets/Datasheets/AZ1117C.pdf) to examine the dropout voltage.
 
-Since *VDropout = Vin - Vout*, our project's dropout voltage was 1.7V. 
+Since *V_dropout = V_in - V_out*, our system's dropout voltage was 1.7V. 
 
-<img src="img/nov221.png" width="350">
+<img src="img/nov221.png" width="400">
 
 Using the above graph, 1.7V is far above the clearance necesary for the linear regulator to work as intended with the output current that we need. I then looked at the example tolerance analysis given in the [wiki](https://courses.engr.illinois.edu/ece445/wiki/#/regulators/index) to do this. Using this calculation:
 
