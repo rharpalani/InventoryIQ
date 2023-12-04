@@ -232,3 +232,8 @@ The finalized design of the main enclosure, with the LCD on top and the PCB hidd
 
 ## 2023-11-28
 
+Today, all of our parts as well as the updated PCB came in. I first soldered on the components to create the power subsystem to make sure that it worked, since that was the main issue in our last PCB. After inputting 5V from the AC-DC adapter, I was able to read 3.3V coming out of the linear regulator at the testpoint, indicating that the power subsystem was working on this new PCB.
+
+The oscilloscope values values read are shown here:
+
+![nov28](img/nov28.png)
