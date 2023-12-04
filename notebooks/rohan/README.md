@@ -188,6 +188,24 @@ void pushComponent(String component) {
 } 
 ```
 
+## 2023-11-16
+
+Now that the software is complete and the entire project is working on the development board, we needed to get the PCB soldered and working. Today, Krish and I spent 8 hours soldering parts onto our PCB to hopefully get it working with the overall system. At first, the completed PCB worked, with a simple "hello, world!" program printing to the serial monitor. However, this only worked while powered through the bridge from our laptops. 
+
+Unfortunately, after plugging our PCB into the wall adapter and providing it with a 12V input, we realized that something was very wrong with our power supply subsystem. I went through and measured the voltages at each point using the oscilloscope in the lab, and realized that we were getting voltage levels that we should not have been getting in many places. For example, at the output of one of our buck converters, rather than getting 5V, we were getting 25V. Somehow, we had turned our buck converter into a boost converter, which ended up frying our entire circuit and microcontroller. 
+
+Though we were understandably distraught, we made a plan to revitalize our project over Thanksgiving break. Though we would both be in different states for the holidays, we planned to put in a rush order of a new PCB JLC and parts from Digikey, so that as soon as Thanksgiving break was over, we could re-solder our entire PCB and hope that we could get it working by that Wednesday's demo. 
+
+## 2023-11-22
+
+Today, Krish and I spent the entire day re-designing our PCB on KiCAD. Krish had a few ideas on why our power subsystem failed, but we just decided to redesign it altogether. Rather than providing our circuit with 12V input and stepping it down twice to 5V and to 3.3V, we decided to instead provide a 5V input via the AC-DC adapter and then use a linear regulator circuit to step it down to 3.3V. Both Krish and I felt far more confident in our understanding of the linear regulator circuit, and hoped that this could solve our power subsystem problem. 
+
+Now that we had selected a linear regulator, while Krish redesigned the PCB, I ran a tolerance analysis on our selected component. I used both the regulator's [datasheet](https://www.diodes.com/assets/Datasheets/AZ1117C.pdf) and the example tolerance analysis given in the [wiki](https://courses.engr.illinois.edu/ece445/wiki/#/regulators/index) to do this. Using this calculation:
+
+![nov22](img/nov22.png =300x)
+
+The maximum temperature the regulator would reach was 133 degrees Celsius in the worst case, which is lower than maximum temperature tolerance of 150 degrees Celsius. 
+
 ## 2023-11-27
 
 Today my objective was to 3D print an enclosure for our PCB and the other various modules of our design. I followed some of the [tutorials](https://www.tinkercad.com/learn) on the Tinkercad website, a 3D printing software used by beginners, to create an enclosure for our PCB, the LCD, RFID reader, and camera. The source files can be [here](/3D_printing/). 
