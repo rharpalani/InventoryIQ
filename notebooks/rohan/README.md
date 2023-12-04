@@ -32,7 +32,7 @@ Today we received the relay module, so we tested it to ensure that we could use 
 
 <img src="img/nov13.png" width="700">
 
-However, I still wasn't able to unlock the box with the relay. After even further investigation, I realized that the relay I had ordered was listed as a 12V relay. I initially thought this menat that it could power a 12V load. However, this dual-circuit electromagnet understanding made me realize that the 12V was actually the voltage required to enable the electromagnet. After connecting the enable pin to the 12V power source, the solenoid finally unlocked. This circuit is shown below.
+However, I still wasn't able to unlock the box with the relay. After even further investigation, I realized that the relay I had ordered was listed as a 12V relay. I initially thought this meant that it could power a 12V load. However, this dual-circuit electromagnet understanding made me realize that the 12V was actually the voltage required to enable the electromagnet. After connecting the enable pin to the 12V power source, the solenoid finally unlocked. This circuit is shown below.
 
 <img src="img/nov13.jpg" width="700">
 
@@ -198,7 +198,7 @@ Now that the software is complete and the entire project is working on the devel
 
 Unfortunately, after plugging our PCB into the wall adapter and providing it with a 12V input, we realized that something was very wrong with our power supply subsystem. I went through and measured the voltages at each point using the oscilloscope in the lab, and realized that we were getting voltage levels that we should not have been getting in many places. For example, at the output of one of our buck converters, rather than getting 5V, we were getting 25V. Somehow, we had turned our buck converter into a boost converter, which ended up frying our entire circuit and microcontroller. 
 
-Though we were understandably distraught, we made a plan to revitalize our project over Thanksgiving break. Though we would both be in different states for the holidays, we planned to put in a rush order of a new PCB JLC and parts from Digikey, so that as soon as Thanksgiving break was over, we could re-solder our entire PCB and hope that we could get it working by that Wednesday's demo. 
+Though we were understandably distraught, we made a plan to revitalize our project over Thanksgiving break. Though we would both be in different states for the holidays, we planned to put in a rush order of a new PCB through JLC and parts from Digikey, so that as soon as Thanksgiving break was over, we could re-solder our entire PCB and hopefully get it working by that Wednesday's demo. 
 
 ## 2023-11-22
 
@@ -244,3 +244,9 @@ Today, all of our parts as well as the updated PCB came in. I first soldered on 
 The oscilloscope values values read are shown here:
 
 <img src="img/nov28.png" width="350">
+
+After spending many hours soldering, Krish and I realized that we weren't able to program the ESP32 on this new PCB. The serial monitor was stuck in boot mode and was constantly waiting for a new program to be downloaded. Though we had experienced this on our previous PCB and fixed it by manually shorting the PCB's Vin and ground pins, that same strategy didn't work this time. I found multiple forums including [this](https://github.com/espressif/arduino-esp32/issues/3798) that suggested holding GPIO0 to ground. I then used the oscilloscope to measure the ground values in multiple places throughout our circuit, thinking that this may be the issue at hand. As I had suspected, multiple test points that should have been ground were actually somewhere between 0.5 and 1.5V, probably messing up the GPIO0 pin and forcing the ESP to perpetually stay in boot mode. Our hypothesis is that in our soldering, we may have accidentally bridged a trace, causing ground to not truly be grounded anymore. 
+
+At this point, it was 4am and the night before our final demo, so Krish and I decided that the best thing to do was to use this new PCB just for the power subsystem, since it could reliably provide 3.3V, and to use our old PCB to hold the microcontroller, since we were able to program the ESP32 on that PCB. We again re-soldered to make this arrangement, and finally were able to get the project to work as intended. In the end, we had the power subsystem on one PCB and the control subsystem on another - though not ideal, we satisfied the requirements of providing power through the PCB and having the microcontroller soldered to it. 
+
+<img src="img/nov28.jpeg" width="700">
