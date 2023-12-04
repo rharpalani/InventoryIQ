@@ -204,7 +204,9 @@ Now that we had selected a linear regulator, while Krish redesigned the PCB, I r
 
 ![nov22](img/nov22.png)
 
-The maximum temperature the regulator would reach was 133 degrees Celsius in the worst case, which is lower than maximum temperature tolerance of 150 degrees Celsius. 
+The maximum temperature the regulator would reach was 133 degrees Celsius in the worst case, which is lower than maximum temperature tolerance of 150 degrees Celsius.  
+
+Once Krish finished designing the PCB and I finished wiring it, I placed an order on Digikey to get the new parts needed (mainly the new regulator and other ancillary resistors/capacitors) and an order on JLC PCB to get a rush shipment of the new PCB design. Both said that they would arrive by either the Monday or Tuesday after break. 
 
 ## 2023-11-27
 
@@ -223,3 +225,6 @@ Here's the design as it's being printed:
 The finalized design of the main enclosure, with the LCD on top and the PCB hidden underneath:
 
 ![nov273](img/nov273.jpeg)
+
+## 2023-11-28
+
