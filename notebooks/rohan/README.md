@@ -202,7 +202,7 @@ Today, Krish and I spent the entire day re-designing our PCB on KiCAD. Krish had
 
 Now that we had selected a linear regulator, while Krish redesigned the PCB, I ran a tolerance analysis on our selected component. I used both the regulator's [datasheet](https://www.diodes.com/assets/Datasheets/AZ1117C.pdf) and the example tolerance analysis given in the [wiki](https://courses.engr.illinois.edu/ece445/wiki/#/regulators/index) to do this. Using this calculation:
 
-![nov22](img/nov22.png =300x)
+![nov22](img/nov22.png)
 
 The maximum temperature the regulator would reach was 133 degrees Celsius in the worst case, which is lower than maximum temperature tolerance of 150 degrees Celsius. 
 
