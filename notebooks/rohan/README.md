@@ -249,4 +249,8 @@ After spending many hours soldering, Krish and I realized that we weren't able t
 
 At this point, it was 4am and the night before our final demo, so Krish and I decided that the best thing to do was to use this new PCB just for the power subsystem, since it could reliably provide 3.3V, and to use our old PCB to hold the microcontroller, since we were able to program the ESP32 on that PCB. We again re-soldered to make this arrangement, and finally were able to get the project to work as intended. In the end, we had the power subsystem on one PCB and the control subsystem on another - though not ideal, we satisfied the requirements of providing power through the PCB and having the microcontroller soldered to it. 
 
+As can be seen here, the PCB in the foreground contains our control subsystem with the ESP32, and the one in the background is used to provide power to the ESP32 and other modules. 
+
 <img src="img/nov28.jpeg" width="700">
+
+A final demonstration video of our project can be seen [here](https://youtu.be/PPzAGEirUPg?si=TuyA4h9PU0MN2_ne). All of our high level requirements were satisfied and our system was functional, making this senior design project a success. 
