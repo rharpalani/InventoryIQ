@@ -1,5 +1,19 @@
 # Rohan's Worklog & Journal
 
+## 2023-10-03
+
+Today, our objective was to finalize the parts that we needed from Digikey. Following the finalization of our project proposal & design document, we realized that several of the parts that we had initially included as part of our block diagram and subsystem designs would not work correctly. Within our team, I took the lead on identifying the correct parts, validating them with the rest of our design (in terms of the input & output pins available, voltage requirements, and other functionality), and ordering these parts. 
+
+I created a parts ordering spreadsheet to keep track of all of these findings and hold a record of the updated corrected parts. This allowed us to keep track of the parts that we ordered, what orders they were a part of on Digikey, and ensure that the orders were placed on my.ece correctly.
+
+<img src="img/oct3.png" width="700">
+
+While Krish was primarily responsible for the power subsystem, I also helped to identify the correct buck converters required for our circuit. After running our tolerance analysis, we realized that the linear regulator would output more heat than tolerable for the circuit in the voltage drop from 12V to 5V. As such, I was responsible for choosing a new method by which to create this voltage drop. Originally, we had the idea of cascading buck converters, since we need 12V, 5V, and 3.3V in our circuit. However, we realized that cascading these buck converters would be a bad idea due to the reduced voltage regulation, where the regulation and control of voltage becomes more challenging in cascading configurations. This occurs as each converter has its own voltage control loop, resulting in less precise voltage regulation.
+
+Following this realization, we decided to design two separate buck converter circuits in our circuit, one to provide the drop from 12V to 5V and one to provide the drop from 12V to 3.3V. After doing some research and looking at multiple datasheets on Digikey, With the following circuit, I was able to calculate the required resistances & capacitances to create each of these voltage drops.
+
+<img src="img/oct3a.png" width="700">
+
 ## 2023-11-07
 
 Today I spent the entire day on development since we've finally received many of the parts required for our user interface subsystem. My goal was to understand how to use the RFID reader module and LCD. To effectively learn how each of these parts worked before integrating them into the system, I first tested each module on my Arduino Uno using the manufacturer-provided test files and libraries. Once each of these was working individually, my objective for the day was to be able to read an RFID's unique ID (UID) using the Arduino and then echo it to the LCD. 
