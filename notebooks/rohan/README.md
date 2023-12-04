@@ -228,7 +228,7 @@ Here's the design as it's being printed:
 
 The finalized design of the main enclosure, with the LCD on top and the PCB hidden underneath:
 
-![nov273](img/nov273.jpeg)
+<img src="img/nov273.jpeg" width="1000">
 
 ## 2023-11-28
 
@@ -236,4 +236,4 @@ Today, all of our parts as well as the updated PCB came in. I first soldered on 
 
 The oscilloscope values values read are shown here:
 
-<img src="img/nov28.png" width="300">
+<img src="img/nov28.png" width="500">
