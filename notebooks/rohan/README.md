@@ -220,7 +220,7 @@ I then went to the Jackson Innovation Lab in the Mechanical Engineering building
 
 The design in the slicing software can be seen here:
 
-<img src="img/nov273.jpeg">
+<img src="img/nov271.jpeg">
 
 Here's the design as it's being printed:
 
