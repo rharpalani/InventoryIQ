@@ -204,7 +204,13 @@ Though we were understandably distraught, we made a plan to revitalize our proje
 
 Today, Krish and I spent the entire day re-designing our PCB on KiCAD. Krish had a few ideas on why our power subsystem failed, but we just decided to redesign it altogether. Rather than providing our circuit with 12V input and stepping it down twice to 5V and to 3.3V, we decided to instead provide a 5V input via the AC-DC adapter and then use a linear regulator circuit to step it down to 3.3V. Both Krish and I felt far more confident in our understanding of the linear regulator circuit, and hoped that this could solve our power subsystem problem. 
 
-Now that we had selected a linear regulator, while Krish redesigned the PCB, I ran a tolerance analysis on our selected component. I used both the regulator's [datasheet](https://www.diodes.com/assets/Datasheets/AZ1117C.pdf) and the example tolerance analysis given in the [wiki](https://courses.engr.illinois.edu/ece445/wiki/#/regulators/index) to do this. Using this calculation:
+Now that we had selected a linear regulator, while Krish redesigned the PCB, I ran a tolerance analysis on our selected component. First, I used the regulator's [datasheet](https://www.diodes.com/assets/Datasheets/AZ1117C.pdf) to examine the dropout voltage.
+
+Since *VDropout = Vin - Vout*, our project's dropout voltage was 1.7V. 
+
+<img src="img/nov221.png" width="350">
+
+Using the above graph, 1.7V is far above the clearance necesary for the linear regulator to work as intended with the output current that we need. I then looked at the example tolerance analysis given in the [wiki](https://courses.engr.illinois.edu/ece445/wiki/#/regulators/index) to do this. Using this calculation:
 
 <img src="img/nov22.png" width="500">
 
