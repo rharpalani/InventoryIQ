@@ -14,9 +14,9 @@ Following this realization, we decided to design two separate buck converter cir
 
 <img src="img/oct3a.png" width="700">
 
-## 2023-10-10
+## 2023-10-13
 
-Today, our objective was to get the PCB in for the 2nd round deadline. Though we weren't quite ready to have a finalized PCB done by last week's deadline, we wanted to get one in time for the deadline today to give us as much room for error as possible. Over the course of the day, I helped Krish to find components, footprints, and check over the circuit design while he put it all together. After, I took the lead on wiring the circuit, so that we could get it done on time.
+Today, our objective was to get the PCB in for the 2nd round deadline. Though we weren't quite ready to have a finalized PCB done by this week's deadline, we wanted to get one in time for the deadline next week to give us as much room for error as possible. Over the course of the day, I helped Krish to find components, footprints, and check over the circuit design while he put it all together. After, I took the lead on wiring the circuit, so that we could get it done on time.
 
 <img src="img/oct10.png" width="700">
 
